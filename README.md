@@ -14,8 +14,8 @@ Neodraco's Books sera un outil privé me permettant ainsi de pouvoir gérer ma b
 
 Voici donc ce que j'ai prévu dans ce projet :
 
-- [ ] La création d'un compte utilisateur.
-- [ ] L'authentification.
+- [x] La création d'un compte utilisateur.
+- [x] L'authentification.
 - [ ] La possibilité de se déconnecter.
 - [ ] La modification d'informations tel que le nom, prénom, email et mot de passe.
 - [ ] L'ajout et la suppression d'auteurs

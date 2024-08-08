@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST["username"]);
     $email = htmlspecialchars($_POST["email"]);
     $password = htmlspecialchars($_POST["password"]);
-    $confirmpassword = htmlspecialchars($_POST["confirm-password"]);
+    $confirmpassword = htmlspecialchars($_POST["password-confirm"]);
 
     // Check if passwords match
     if ($password === $confirmpassword) {
@@ -47,14 +47,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ":lastname" => $lastname
             ]);
 
-            echo json_encode(["message" => "User was successfully registered."]);
+            echo json_encode(["message" => "Enregistrement effectué ! Redirection en cours..."]);
 
         } catch (PDOException $e) {
-            echo json_encode(["message" => "Failed to register user: " . $e->getMessage()]);
+            // Check for unique constraint violation
+            if ($e->errorInfo[1] == 1062) {
+                echo json_encode(["message" => "Echec de l'enregistrement : le nom d'utilisateur a déjà été pris."]);
+            } else {
+                echo json_encode(["message" => "Échec de l'enregistrement : " . $e->getMessage()]);
+            }
         }
     } else {
-        echo json_encode(["message" => "Passwords do not match."]);
+        echo json_encode(["message" => "Les mots de passe ne correspondent pas."]);
     }
 } else {
-    echo json_encode(["message" => "This method only accept POST data."]);
+    echo json_encode(["message" => "Cette méthode n'accepte que les données POST."]);
 }
+?>

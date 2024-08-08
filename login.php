@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2 class="mb-3">Connexion</h2>
-            <form class="needs-validation mb-3" novalidate action="login.php" method="post">
+            <form id="loginForm" class="needs-validation mb-3" novalidate method="post" action="php/user_auth.php">
                 <div class="form-group mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
@@ -49,6 +49,14 @@
                 <button type="submit" class="btn btn-primary mb-3">Connexion</button>
                 <a href="register.php" class="btn btn-secondary mb-3">S'inscrire</a>
             </form>
+            <?php if(isset($_SESSION['message'])): ?>
+                <div id="message" class="alert alert-danger" role="alert">
+                    <?php
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                    ?>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </div>
@@ -60,10 +68,8 @@
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
         'use strict'
-
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         const forms = document.querySelectorAll('.needs-validation')
-
         // Loop over them and prevent submission
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
@@ -71,7 +77,6 @@
                     event.preventDefault()
                     event.stopPropagation()
                 }
-
                 form.classList.add('was-validated')
             }, false)
         })

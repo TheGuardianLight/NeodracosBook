@@ -6,8 +6,8 @@
 
 // Use this library to work with .env file
 global $pdo;
+
 require __DIR__ . '/../vendor/autoload.php';
-// Use the database connection script
 require 'db_connect.php';
 
 // Get POST data

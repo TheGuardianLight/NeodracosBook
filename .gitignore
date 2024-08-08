@@ -2,3 +2,4 @@
 /composer.phar
 /vendor/
 /bdd_structure.sql
+/.env

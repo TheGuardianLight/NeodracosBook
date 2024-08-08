@@ -13,6 +13,7 @@
     <title>Neodraco's Books</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <?php require 'php/favicon.php' ?>
 </head>
 
@@ -20,7 +21,7 @@
 
 <body>
 
-<div class="container">
+<div class="container login-register">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2 class="mb-3">Connexion</h2>
@@ -46,6 +47,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">Connexion</button>
+                <a href="register.php" class="btn btn-secondary mb-3">S'inscrire</a>
             </form>
         </div>
     </div>

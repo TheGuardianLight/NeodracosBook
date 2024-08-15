@@ -23,6 +23,7 @@ Voici donc ce que j'ai prévu dans ce projet :
 - [ ] L'ajout et la suppression de livre
 - [ ] L'exportation de données.
 - [ ] L'importation de données.
+- [ ] Un script d'installation.
 - [ ] La possibilité de chercher un livre spécifique dans la bibliothèque.
 - [ ] La possibilité d'ajouter une cover du livre.
 - [ ] Ajouter une documentation intégré au site.

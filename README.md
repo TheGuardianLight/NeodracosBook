@@ -16,10 +16,10 @@ Voici donc ce que j'ai prévu dans ce projet :
 
 - [x] La création d'un compte utilisateur.
 - [x] L'authentification.
-- [ ] La possibilité de se déconnecter.
+- [x] La possibilité de se déconnecter.
 - [ ] La modification d'informations tel que le nom, prénom, email et mot de passe.
-- [ ] L'ajout et la suppression d'auteurs
-- [ ] L'ajout et la suppression d'éditeurs
+- [x] L'ajout et la suppression d'auteurs
+- [x] L'ajout et la suppression d'éditeurs
 - [ ] L'ajout et la suppression de livre
 - [ ] L'exportation de données.
 - [ ] L'importation de données.

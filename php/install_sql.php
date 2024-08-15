@@ -82,7 +82,6 @@ try {
         ALTER TABLE `users_book` ADD CONSTRAINT `users_book_fk_1` FOREIGN KEY (`id_book`) REFERENCES `books` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT;
         ALTER TABLE `users_book` ADD CONSTRAINT `users_book_fk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE RESTRICT;
         ALTER TABLE `users_info` ADD CONSTRAINT `user_info_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE RESTRICT;
-        SQL;
     ";
 
     $connection->exec($sql);

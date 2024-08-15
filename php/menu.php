@@ -9,8 +9,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Livres</a>
+                <li class="nav-item dropdown align-self-center">
+                    <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ma bibliothèque
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                        <li>
+                            <a class="dropdown-item disabled" href="#">Mes livres</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item disabled" href="#">Ajouter un livre</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="author.php">Auteurs</a>

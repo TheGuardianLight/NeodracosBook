@@ -19,7 +19,7 @@
                     <a class="nav-link" href="editor.php">Éditeurs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Séries</a>
+                    <a class="nav-link" href="series.php">Séries</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Votre compte</a>

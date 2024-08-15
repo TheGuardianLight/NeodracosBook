@@ -5,3 +5,11 @@
 .login-register{
     padding-top: 30px;
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* à ajuster si nécessaire */
+}
+.dropdown-menu {
+    margin-top: 0; /* à ajuster si nécessaire */
+}

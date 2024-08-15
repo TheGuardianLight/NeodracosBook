@@ -46,9 +46,9 @@ $series = $stmt->fetchAll();
 <body>
 
 <main class="container mt-5">
-    <div class="card mb-5">
-        <div class="card-header">
-            <h2>Ajouter une série</h2>
+    <div class="card mb-5 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="h4 mb-0">Ajouter une série</h2>
         </div>
         <div class="card-body">
             <form action="series.php" method="post">
@@ -65,14 +65,14 @@ $series = $stmt->fetchAll();
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
             </form>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h2>Liste des séries</h2>
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <h2 class="h4 mb-0">Liste des séries</h2>
         </div>
         <div class="card-body">
             <?php if (empty($series)): ?>

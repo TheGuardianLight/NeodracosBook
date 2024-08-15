@@ -98,9 +98,9 @@ require 'php/book_managment.php';
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h2>Liste des livres</h2>
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-secondary text-white">
+            <h2 class="h4 mb-0">Liste des livres</h2>
         </div>
         <div class="card-body">
             <?php if (empty($books)): ?>

@@ -89,7 +89,7 @@ $books = $stmt->fetchAll();
                                     <?= htmlspecialchars($book['book_ISBN']) ?>
                                 <?php endif; ?>
                             </td>
-                            <td><?= htmlspecialchars($book['book_date']) ?? 'Pas de valeur' ?></td>
+                            <td><?= isset($book['book_date']) ? (new DateTime($book['book_date']))->format('d/m/Y') : 'Pas de valeur' ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

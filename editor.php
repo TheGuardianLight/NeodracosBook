@@ -42,9 +42,9 @@ $editors = $stmt->fetchAll();
 
 <main class="container mt-5">
     <!-- Section for Adding Editors -->
-    <div class="card mb-5">
-        <div class="card-header">
-            <h2>Ajouter un éditeur</h2>
+    <div class="card mb-5 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="h4 mb-0">Ajouter un éditeur</h2>
         </div>
         <div class="card-body">
             <form action="editor.php" method="post">
@@ -56,15 +56,15 @@ $editors = $stmt->fetchAll();
                     <label for="editor_website" class="form-label">Site internet (https://)</label>
                     <input type="url" class="form-control" id="editor_website" name="editor_website" required pattern="https://.*">
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Ajouter</button>
+                <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
             </form>
         </div>
     </div>
 
     <!-- Section for Listing Editors -->
-    <div class="card">
-        <div class="card-header">
-            <h2>Liste des éditeurs</h2>
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-secondary text-white">
+            <h2 class="h4 mb-0">Liste des éditeurs</h2>
         </div>
         <div class="card-body">
             <?php if (empty($editors)): ?>

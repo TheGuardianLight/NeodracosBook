@@ -16,7 +16,7 @@
                     <a class="nav-link" href="author.php">Auteurs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Éditeurs</a>
+                    <a class="nav-link" href="editor.php">Éditeurs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Séries</a>

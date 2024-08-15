@@ -21,7 +21,7 @@ Voici donc ce que j'ai prévu dans ce projet :
 - [x] L'ajout et la suppression d'auteurs
 - [x] L'ajout et la suppression d'éditeurs
 - [x] L'ajout et la suppression de séries
-- [ ] L'ajout et la suppression de livre
+- [x] L'ajout et la suppression de livre
 - [ ] L'exportation de données.
 - [ ] L'importation de données.
 - [ ] Un script d'installation.

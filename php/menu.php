@@ -15,10 +15,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                         <li>
-                            <a class="dropdown-item disabled" href="#">Mes livres</a>
+                            <a class="dropdown-item" href="books.php">Mes livres</a>
                         </li>
                         <li>
-                            <a class="dropdown-item disabled" href="#">Ajouter un livre</a>
+                            <a class="dropdown-item" href="add_book.php">Ajouter un livre</a>
                         </li>
                     </ul>
                 </li>

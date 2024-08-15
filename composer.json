@@ -1,6 +1,7 @@
 {
   "require": {
     "vlucas/phpdotenv": "v5.6.1",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-mysqli": "*"
   }
 }

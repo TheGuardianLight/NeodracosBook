@@ -20,6 +20,7 @@ Voici donc ce que j'ai prévu dans ce projet :
 - [ ] La modification d'informations tel que le nom, prénom, email et mot de passe.
 - [x] L'ajout et la suppression d'auteurs
 - [x] L'ajout et la suppression d'éditeurs
+- [x] L'ajout et la suppression de séries
 - [ ] L'ajout et la suppression de livre
 - [ ] L'exportation de données.
 - [ ] L'importation de données.

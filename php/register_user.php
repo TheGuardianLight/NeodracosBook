@@ -4,9 +4,6 @@
  */
 // register_user.php
 
-// This script should be secure and prevent any kind of SQL injections
-// You should properly handle exceptions and errors
-
 // Use this library to work with .env file
 global $pdo;
 
@@ -50,20 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ":lastname" => $lastname
             ]);
 
-            echo json_encode(["message" => "Enregistrement effectué ! Redirection en cours..."]);
-
+            // Registration successful: send a success status
+            http_response_code(200);
         } catch (PDOException $e) {
             // Check for unique constraint violation
             if ($e->errorInfo[1] == 1062) {
-                echo json_encode(["message" => "Echec de l'enregistrement : le nom d'utilisateur a déjà été pris."]);
+                http_response_code(409);  // Conflict: Username already taken
             } else {
-                echo json_encode(["message" => "Échec de l'enregistrement : " . $e->getMessage()]);
+                http_response_code(500);  // Internal server error
             }
         }
     } else {
-        echo json_encode(["message" => "Les mots de passe ne correspondent pas."]);
+        http_response_code(400);  // Bad Request: Passwords do not match
     }
 } else {
-    echo json_encode(["message" => "Cette méthode n'accepte que les données POST."]);
+    http_response_code(405); // Method Not Allowed: Only POST requests are accepted
 }
-?>
+
+exit;

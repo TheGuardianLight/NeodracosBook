@@ -83,17 +83,31 @@
                 url: "php/register_user.php",
                 type: "post",
                 data: $(this).serialize(),
-                success: function(data) {
-                    var msg = JSON.parse(data);
-                    $("#message").html('<div class="alert alert-success" role="alert">'+msg.message+'</div>');
-                    // Redirection vers login.php après 3 secondes
-                    setTimeout(function(){
-                        window.location.href = "login.php";
-                    }, 3000);
-                },
-                error: function(xhr, status, error) {
-                    var err = JSON.parse(xhr.responseText);
-                    $("#message").html('<div class="alert alert-danger" role="alert">'+err.message+'</div>');
+                complete: function(xhr, textStatus) {
+                    var message = '';
+                    if (xhr.status === 200) {
+                        message = "Enregistrement effectué ! Redirection en cours...";
+                        $("#message").html('<div class="alert alert-success" role="alert">'+message+'</div>');
+                        setTimeout(function(){
+                            window.location.href = "login.php";
+                        }, 3000);
+                    } else {
+                        switch (xhr.status) {
+                            case 400:
+                                message = "Les mots de passe ne correspondent pas.";
+                                break;
+                            case 409:
+                                message = "Echec de l'enregistrement : le nom d'utilisateur a déjà été pris.";
+                                break;
+                            case 405:
+                                message = "Cette méthode n'accepte que les données POST.";
+                                break;
+                            default:
+                                message = "Erreur de connexion au serveur.";
+                                break;
+                        }
+                        $("#message").html('<div class="alert alert-danger" role="alert">'+message+'</div>');
+                    }
                 }
             });
         });

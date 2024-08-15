@@ -20,7 +20,9 @@
     <p class="text-center">Présence du fichier <code>install.lock</code> détecté !</p>
 </div>
 
-<div id="install-form" class="container mt-3 d-none">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<div id="install-form" class="container mt-3">
     <h1 class="text-center">Configuration de la base de données</h1>
 
     <form id="database-config-form">
@@ -52,29 +54,32 @@
     <div id="success-message" class="alert alert-success d-none mt-3"></div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     const installForm = document.getElementById('install-form');
-    const installAlert = document.getElementById('install-alert');
+    const installAlerte = document.getElementById('install-alert');
 
     $(document).ready(function() {
         // Effectue une requête AJAX pour vérifier si le fichier "install.lock" existe
         $.ajax({
             url: 'install.lock',
             type: 'HEAD',
-            error: function() {
+            error: function()
+            {
                 // Le fichier "install.lock" n'existe pas, affiche 'installateur'
                 installForm.classList.remove('d-none');
-                installAlert.classList.add('d-none');
+                installAlerte.classList.add('d-none');
             },
-            success: function() {
+            success: function()
+            {
                 // Le fichier "install.lock" existe, affiche 'Installation non autorisée !'
                 installForm.classList.add('d-none');
-                installAlert.classList.remove('d-none');
+                installAlerte.classList.remove('d-none');
             }
         });
     });
+</script>
 
+<script>
     document.getElementById('database-config-form').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -104,17 +109,9 @@
                 successMessageElement.classList.remove('d-none');
                 successMessageElement.textContent = data.success;
 
-                // Créer le fichier install.lock
-                fetch('php/install_lock.php', {
-                    method: 'POST'
-                }).then(() => {
-                    setTimeout(function() {
-                        window.location.href = "login.php";
-                    }, 5000);
-                }).catch(error => {
-                    errorMessageElement.classList.remove('d-none');
-                    errorMessageElement.textContent = "Erreur de création du fichier install.lock.";
-                });
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 5000);
             }
         }).catch(error => {
             errorMessageElement.classList.remove('d-none');

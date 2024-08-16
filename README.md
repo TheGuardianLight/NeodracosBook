@@ -29,7 +29,7 @@ Voici donc ce que j'ai prévu dans ce projet :
 - [ ] La possibilité d'ajouter une cover du livre.
 - [ ] Ajouter une documentation intégré au site.
 - [x] Ajouter un système de triage.
-- [ ] Ajouter une page d'accueil avec des statistiques.
+- [x] Ajouter une page d'accueil avec des statistiques.
 
 ## Des problèmes ? Des idées d'améliorations ?
 

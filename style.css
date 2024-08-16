@@ -13,3 +13,16 @@
 .dropdown-menu {
     margin-top: 0; /* à ajuster si nécessaire */
 }
+
+th.sortable:hover {
+    cursor: pointer;
+}
+th.sortable .sort-icon {
+    margin-left: 5px;
+}
+th.sortable.asc .sort-icon::before {
+    content: "▲";
+}
+th.sortable.desc .sort-icon::before {
+    content: "▼";
+}

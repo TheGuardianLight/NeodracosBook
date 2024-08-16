@@ -45,11 +45,6 @@ $books = $stmt->fetchAll();
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <?php require 'php/favicon.php'; ?>
-    <style>
-        th.sortable:hover {
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <?php require 'php/menu.php'; ?>
@@ -80,13 +75,13 @@ $books = $stmt->fetchAll();
                         echo '<h3>' . htmlspecialchars($current_series) . '</h3>';
                         echo '<table class="table table-striped">';
                         echo '<thead><tr>
-                                <th class="sortable" scope="col" data-sort="book_name">Titre du livre</th>
-                                <th class="sortable" scope="col" data-sort="book_nbe">Tome</th>
-                                <th class="sortable" scope="col" data-sort="author_name">Auteur</th>
-                                <th class="sortable" scope="col" data-sort="editor_name">Éditeur</th>
-                                <th class="sortable" scope="col" data-sort="book_price">Prix (€)</th>
-                                <th class="sortable" scope="col" data-sort="book_ISBN">ISBN</th>
-                                <th class="sortable" scope="col" data-sort="book_date">Date de publication</th>
+                                <th class="sortable" scope="col" data-sort="book_name">Titre du livre <span class="sort-icon"></span></th>
+                                <th class="sortable" scope="col" data-sort="book_nbe">Tome <span class="sort-icon"></span></th>
+                                <th class="sortable" scope="col" data-sort="author_name">Auteur <span class="sort-icon"></span></th>
+                                <th class="sortable" scope="col" data-sort="editor_name">Éditeur <span class="sort-icon"></span></th>
+                                <th class="sortable" scope="col" data-sort="book_price">Prix (€) <span class="sort-icon"></span></th>
+                                <th class="sortable" scope="col" data-sort="book_ISBN">ISBN <span class="sort-icon"></span></th>
+                                <th class="sortable" scope="col" data-sort="book_date">Date de publication <span class="sort-icon"></span></th>
                               </tr></thead>';
                         echo '<tbody>';
                     }
@@ -128,17 +123,21 @@ $books = $stmt->fetchAll();
                 const cellA = a.children[index].innerText.toLowerCase();
                 const cellB = b.children[index].innerText.toLowerCase();
 
+                // Gérer le tri des nombres
+                const isNum = !isNaN(cellA) && !isNaN(cellB);
+                if (isNum) {
+                    return asc ? (parseFloat(cellA) - parseFloat(cellB)) : (parseFloat(cellB) - parseFloat(cellA));
+                }
+
                 return asc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
             });
 
             th.classList.toggle('asc', asc);
             th.classList.toggle('desc', !asc);
 
-            // Remove old sorted class from other headers
-            table.querySelectorAll('th.sortable').forEach((header) => {
-                if (header !== th) {
-                    header.classList.remove('asc', 'desc');
-                }
+            // Enlever les anciennes icônes de tri des autres en-têtes
+            table.querySelectorAll('th.sortable .sort-icon').forEach(icon => {
+                icon.closest('th').classList.remove('asc', 'desc');
             });
 
             rows.forEach(row => tbody.appendChild(row));

@@ -45,6 +45,11 @@ $books = $stmt->fetchAll();
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <?php require 'php/favicon.php'; ?>
+    <style>
+        th.sortable:hover {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <?php require 'php/menu.php'; ?>
@@ -75,13 +80,13 @@ $books = $stmt->fetchAll();
                         echo '<h3>' . htmlspecialchars($current_series) . '</h3>';
                         echo '<table class="table table-striped">';
                         echo '<thead><tr>
-                                <th scope="col">Titre du livre</th>
-                                <th scope="col">Tome</th>
-                                <th scope="col">Auteur</th>
-                                <th scope="col">Éditeur</th>
-                                <th scope="col">Prix (€)</th>
-                                <th scope="col">ISBN</th>
-                                <th scope="col">Date de publication</th>
+                                <th class="sortable" scope="col" data-sort="book_name">Titre du livre</th>
+                                <th class="sortable" scope="col" data-sort="book_nbe">Tome</th>
+                                <th class="sortable" scope="col" data-sort="author_name">Auteur</th>
+                                <th class="sortable" scope="col" data-sort="editor_name">Éditeur</th>
+                                <th class="sortable" scope="col" data-sort="book_price">Prix (€)</th>
+                                <th class="sortable" scope="col" data-sort="book_ISBN">ISBN</th>
+                                <th class="sortable" scope="col" data-sort="book_date">Date de publication</th>
                               </tr></thead>';
                         echo '<tbody>';
                     }
@@ -110,6 +115,35 @@ $books = $stmt->fetchAll();
 
 <?php require 'php/footer.php'; ?>
 <?php require 'js/bootstrap_script.html'; ?>
+<script>
+    document.querySelectorAll('th.sortable').forEach((th) => {
+        th.addEventListener('click', () => {
+            const table = th.closest('table');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const index = Array.from(th.parentNode.children).indexOf(th);
+            const asc = !th.classList.contains('asc');
 
+            rows.sort((a, b) => {
+                const cellA = a.children[index].innerText.toLowerCase();
+                const cellB = b.children[index].innerText.toLowerCase();
+
+                return asc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            });
+
+            th.classList.toggle('asc', asc);
+            th.classList.toggle('desc', !asc);
+
+            // Remove old sorted class from other headers
+            table.querySelectorAll('th.sortable').forEach((header) => {
+                if (header !== th) {
+                    header.classList.remove('asc', 'desc');
+                }
+            });
+
+            rows.forEach(row => tbody.appendChild(row));
+        });
+    });
+</script>
 </body>
 </html>

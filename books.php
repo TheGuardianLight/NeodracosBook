@@ -30,6 +30,7 @@ $stmt = $pdo->query("
     LEFT JOIN author ON books.book_author_id = author.id 
     LEFT JOIN series ON books.book_series_id = series.id 
     LEFT JOIN editor ON books.book_editor_id = editor.id
+    ORDER BY series.series_name, books.book_name
 ");
 $books = $stmt->fetchAll();
 ?>
@@ -60,40 +61,48 @@ $books = $stmt->fetchAll();
                     Aucun livre n'est enregistré
                 </div>
             <?php else: ?>
-                <table class="table table-striped">
-                    <thead>
+                <?php
+                $current_series = null;
+                foreach ($books as $book):
+                    // Check if we need to display a new series header
+                    if ($current_series !== $book['series_name']) {
+                        if ($current_series !== null) {
+                            // Close the previous table
+                            echo '</tbody></table>';
+                        }
+                        $current_series = $book['series_name'];
+                        // Display series header and new table
+                        echo '<h3>' . htmlspecialchars($current_series) . '</h3>';
+                        echo '<table class="table table-striped">';
+                        echo '<thead><tr>
+                                <th scope="col">Titre du livre</th>
+                                <th scope="col">Tome</th>
+                                <th scope="col">Auteur</th>
+                                <th scope="col">Éditeur</th>
+                                <th scope="col">Prix (€)</th>
+                                <th scope="col">ISBN</th>
+                                <th scope="col">Date de publication</th>
+                              </tr></thead>';
+                        echo '<tbody>';
+                    }
+                    ?>
                     <tr>
-                        <th scope="col">Titre du livre</th>
-                        <th scope="col">Tome</th>
-                        <th scope="col">Auteur</th>
-                        <th scope="col">Série</th>
-                        <th scope="col">Éditeur</th>
-                        <th scope="col">Prix (€)</th>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Date de publication</th>
+                        <td><?= htmlspecialchars($book['book_name']) ?? 'Pas de valeur' ?></td>
+                        <td><?= htmlspecialchars($book['book_nbe'])?></td>
+                        <td><?= htmlspecialchars($book['author_name']) ?></td>
+                        <td><?= htmlspecialchars($book['editor_name']) ?></td>
+                        <td><?= htmlspecialchars($book['book_price']) ?? 'Pas de valeur' ?></td>
+                        <td>
+                            <?php if (empty($book['book_ISBN'])): ?>
+                                <span class="badge bg-info">ISBN à ajouter</span>
+                            <?php else: ?>
+                                <?= htmlspecialchars($book['book_ISBN']) ?>
+                            <?php endif; ?>
+                        </td>
+                        <td><?= isset($book['book_date']) ? (new DateTime($book['book_date']))->format('d/m/Y') : 'Pas de valeur' ?></td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($books as $book): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($book['book_name']) ?? 'Pas de valeur' ?></td>
-                            <td><?= htmlspecialchars($book['book_nbe'])?></td>
-                            <td><?= htmlspecialchars($book['author_name']) ?></td>
-                            <td><?= htmlspecialchars($book['series_name']) ?></td>
-                            <td><?= htmlspecialchars($book['editor_name']) ?></td>
-                            <td><?= htmlspecialchars($book['book_price']) ?? 'Pas de valeur' ?></td>
-                            <td>
-                                <?php if (empty($book['book_ISBN'])): ?>
-                                    <span class="badge bg-info">ISBN à ajouter</span>
-                                <?php else: ?>
-                                    <?= htmlspecialchars($book['book_ISBN']) ?>
-                                <?php endif; ?>
-                            </td>
-                            <td><?= isset($book['book_date']) ? (new DateTime($book['book_date']))->format('d/m/Y') : 'Pas de valeur' ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <?php endforeach; ?>
+                </tbody></table>
             <?php endif; ?>
         </div>
     </div>

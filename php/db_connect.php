@@ -13,6 +13,10 @@ $user = $_ENV['DB_USER'];
 $pass = $_ENV['DB_PASSWORD'];
 $charset = 'utf8';
 
+$config = [
+    'allowSignup' => $_ENV['ALLOW_SIGNUP'],
+];
+
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $opt = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,

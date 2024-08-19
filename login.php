@@ -1,7 +1,10 @@
-<?php
-/*
+<?php global $config;
+/**
  * Copyright (c) 2024 - Veivneorul. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (BY-NC-ND 4.0).
  */
+
+require 'vendor/autoload.php';
+require 'php/db_connect.php';
 
 ?>
 
@@ -47,7 +50,9 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">Connexion</button>
-                <a href="register.php" class="btn btn-secondary mb-3">S'inscrire</a>
+                <?php if ($config['allowSignup'] == "true"): ?>
+                    <a href="register.php" class="btn btn-secondary mb-3">S'inscrire</a>
+                <?php endif; ?>
             </form>
             <?php if(isset($_SESSION['message'])): ?>
                 <div id="message" class="alert alert-danger" role="alert">
